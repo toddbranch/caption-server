@@ -20,9 +20,12 @@ io.sockets.on('connection', function (socket) {
 
 function updateNumberOfPlayers(socket)
 {
-    var playerObj = {"players": sockets.length};
-    socket.emit('message', playerObj);
-    emitToOtherSockets(playerObj, socket);
+	if (socket)
+	{
+			var playerObj = {"players": sockets.length};
+			socket.emit('message', playerObj);
+			emitToOtherSockets(playerObj, socket);
+		}
 }
 
 function emitToOtherSockets(data, emittingSocket)
